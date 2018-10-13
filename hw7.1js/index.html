@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Галерия</title>
+    <style>
+        #gallery {
+            list-style: none;
+        }
+        li+li{
+            display: none;
+        }
+        img {
+            border: 3px solid red;
+            resize: horizontal;
+        }
+        #prev {
+            margin-left: 20%;
+            
+        }
+        
+    </style>
+</head>
+<body>
+     <ul id=gallery>
+         <li><img src="images/pic1.jpg" id=pic >
+         </li>
+         <li><img src="images/pic2.jpg" id=pic >
+         </li>
+         <li><img src="images/pic3.jpg" id=pic >
+         </li>
+    </ul> 
+      
+   <noscript>
+       Моля, разрешете изпълнението на JS за пълно показване на картинките!
+   </noscript>
+   
+   <!--Не блокиращо свързване-->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var intervalID = 0;
+            $('#pic').slice(function(){
+                goNxt();
+            });//on slice
+            
+            if(intervalID > 0){
+                clearInterval(intervalID);
+                intervalID=0;
+                }
+                else {
+                    intervalID = setInterval( goNxt, 1000);
+                        
+                }
+                console.log('Interval ID:', intervalID)
+            
+            })//on document ready
+        
+        function goNxt(){
+            $('#gallery li:first-child').appendTo($('#gallery'));
+        }
+      
+    </script>
+    
+</body>
+</html>

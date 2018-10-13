@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Галерия</title>
+    <style>
+        #large li+li{
+            display: none;
+         }
+        
+        #gallery li {
+            list-style: none;
+            display:inline-block;
+            list-style: none;
+        }
+        
+        #prev, #nxt {
+            position:fixed;
+            cursor: pointer;
+            margin-top:110px;
+            
+        }
+        
+        #gallery li:first-child {
+            border:2px solid red; 
+        }
+                
+    </style>
+</head>
+<body>  
+       
+       <div id=first>
+           
+           <input type="button" id="prev" style= "height:20px; width:50px; margin-left: 50px;" value="<">
+           <input type="button" id="nxt" style= "height:20px; width:50px; margin-left:500px;" value=">">
+            
+    </div>
+       <ul id = large style="list-style: none">
+           <li><img id = picLarge src="images_large/pic1.jpg"></li>
+           <li><img id = picLarge src="images_large/pic2.jpg"></li>
+           <li><img id = picLarge src="images_large/pic3-320x230.jpg"></li>
+           <li><img id = picLarge src="images_large/pic4-320x230.jpg"></li>
+           <li><img id = picLarge src="images_large/pic5-320x230.jpg"></li>
+           <li><img id = picLarge src="images_large/pic6-320x230.jpg"></li>
+           <li><img id = picLarge src="images_large/pic7-320x230.jpg"></li>
+           
+    </ul> 
+       
+        <ul id=gallery>
+         <li><img src="images_small/pic1.jpg" id = pic ></li>
+         <li><img src="images_small/pic2.jpg" id = pic ></li>
+         <li><img src="images_small/pic3.jpg" id = pic ></li>
+         <li><img src="images_small/pic4.jpg" id = pic ></li>
+         <li><img src="images_small/pic5.jpg" id = pic ></li>
+         <li><img src="images_small/pic6.jpg" id = pic ></li>
+         <li><img src="images_small/pic7.jpg" id = pic ></li>
+    </ul> 
+    
+   
+   <noscript>
+       Моля, разрешете изпълнението на JS за пълно показване на картинките!
+   </noscript>
+   
+   <!--Не блокиращо свързване-->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        
+             $(document).ready(function(){
+            
+            $('#prev').click(function(){
+            $('#large li:last-child').prependTo($('#large'))
+                   goPrev()
+                    
+            }); //on click prev;
+            
+            $('#nxt').click(function(){
+               $('#large li:first-child').appendTo($('#large'))
+                   goNxt();
+            });//on click nxt
+                 
+                
+        })//on document ready
+            
+        function goNxt(){
+            $('#gallery li:first-child').appendTo($('#gallery'));
+        };
+        
+        function goPrev (){
+            $('#gallery li:last-child').prependTo($('#gallery'));
+        };
+        
+    </script>
+    
+</body>
+</html>

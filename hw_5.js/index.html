@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Галерия</title>
+    <style>
+        #links li {
+            list-style: none;
+            display:inline;
+            cursor: pointer;
+            margin-left: 100px;
+            font-style: italic;
+        }
+       
+        img {
+            border: 3px solid red;
+            resize: horizontal;
+        }
+       
+        
+        
+    </style>
+</head>
+<body>
+    <div> 
+        <img src="images_large/pic4-320x230.jpg" alt="" id= large>
+    </div>
+     <ul id=links>
+         <li>
+         <a href="images_large/pic1-320x230.jpg" data-link="pic1-320x230.jpg">Изглед от плажа</a>
+         </li>
+         <li>
+         <a href="images_large/pic2-320x230.jpg" data-link="pic2-320x230.jpg">Удобства на хотела</a>
+         </li>
+         <li>
+          <a href="images_large/pic3-320x230.jpg" data-link="pic3-320x230.jpg" >Разходка по плажа</a>     
+         </li>
+    </ul> 
+    
+
+   <noscript>
+       Моля, разрешете изпълнението на JS за пълно показване на картинките!
+   </noscript>
+   
+   <!--Не блокиращо свързване-->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var defaultImage = "images_large/pic4-320x230.jpg";
+            var path = "images_large/";
+            
+        $('#links li a').mouseover(function(){
+           var linkImage = $(this).data('link');
+            $('#large').attr('src', path + linkImage);
+            }); //on mouseover
+            
+            $('#links li a').mouseout(function(){
+               $('#large').attr('src', defaultImage); 
+            });//on mouseout
+        })//on document ready
+      
+    </script>
+    
+</body>
+</html>

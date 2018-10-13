@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Галерия</title>
+    <style>
+        
+        
+    </style>
+</head>
+<body>
+     <div>
+        <a href=#>
+        <img src="images_large/pic1.jpg" alt="" id="bnr">
+        </a>
+     </div>
+    <div>    
+    <input type="button" id="prev" value="<<">
+    <input type="button" id="slide" value="Auto">
+    <input type="button" id="nxt" value=">>">
+    </div>
+   
+   <noscript>
+       Моля, разрешете изпълнението на JS за пълно показване на картинките!
+   </noscript>
+   
+   <!--Не блокиращо свързване-->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var images=[ 'pic1.jpg'
+                       , 'pic2.jpg'
+                       , 'pic3.jpg'
+                       , 'pic4.jpg'
+                       , 'pic5.jpg'
+                       ];
+            var path = 'images_large/';
+            var currentIndex = '';
+            var buttonLabel = '';
+            var intervalID = 0;
+            var banner = $('#bnr');
+            
+                      
+            $('#nxt').click(function(){
+                currentIndex++;
+                 
+                if(currentIndex >= images.length){
+                currentIndex=0
+                }  
+                banner.attr('src', path + images[currentIndex]);
+                              
+                console.log('current index:', currentIndex, 'image:', 
+                            images[currentIndex]);
+                
+                });//on nxt button
+            
+            
+            $('#slide').click(function(){
+                
+                if(intervalID>0){
+                clearInterval(intervalID);
+                intervalID=0;
+                buttonLabel = 'Auto'         
+                }
+                else {
+                    intervalID = setInterval(function (){currentIndex++;
+                    if(currentIndex >= images.length){
+                        currentIndex = 0
+                    }                                   
+                    banner.attr('src', path + images[currentIndex]);
+                    },3000);
+                    buttonLabel = 'Stop'
+                
+                }
+                 console.log('current index:', currentIndex, 'image:', 
+                            images[currentIndex])
+               $(this).val(buttonLabel);
+                                   
+            });//on auto click;
+            
+            $('#prev').click(function(){
+                currentIndex--;
+                
+                if(currentIndex < 0 ){
+                currentIndex= images.length -1;
+                }
+                banner.attr('src', path + images[currentIndex]);
+                
+                console.log('current index:', currentIndex, 'image:', 
+                            images[currentIndex]);
+                });
+                             
+                
+            
+                 
+            
+        });  //on document ready
+        
+                 
+    </script>
+    
+</body>
+</html>
